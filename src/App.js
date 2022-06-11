@@ -8,11 +8,11 @@ function App() {
   const [fieldSize, setFieldSize] = useState(3);
   const [fieldData, setFieldData] = useState([]);
   useEffect(() => {
-    setFieldData([...Array(fieldSize ** 2)].map((el) => " "));
+    setFieldData([...Array(fieldSize ** 2)].map((el) => ""));
   }, [fieldSize]);
   return (
     <Container>
-      <PlayField fieldSize={fieldData} />
+      <PlayField fieldData={fieldData} />
       <ScoreBoard />
     </Container>
   );

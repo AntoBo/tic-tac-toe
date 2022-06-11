@@ -1,11 +1,11 @@
 import PlayCell from "../PlayCell/PlayCell";
 import s from "./PlayField.module.scss";
 
-const PlayField = ({ fieldSize }) => {
+const PlayField = ({ fieldData }) => {
   return (
     <ul>
-      {fieldSize.map((el, idx) => (
-        <PlayCell key={idx} value="" />
+      {fieldData.map((el, idx) => (
+        <PlayCell key={idx} id={idx} />
       ))}
     </ul>
   );

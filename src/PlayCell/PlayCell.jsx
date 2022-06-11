@@ -1,7 +1,17 @@
+import { useState } from "react";
 import s from "./PlayCell.module.scss";
 
-const PlayCell = ({ idx, value }) => {
-  return <li>[{value}]</li>;
+const PlayCell = ({ id }) => {
+  const [value, setValue] = useState(" ");
+  const handleClick = (e) => {
+    console.log("click on", e.target.dataset.id);
+    setValue("x");
+  };
+  return (
+    <li data-id={id} onClick={handleClick}>
+      {value}
+    </li>
+  );
 };
 
 export default PlayCell;
