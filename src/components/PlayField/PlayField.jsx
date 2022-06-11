@@ -3,7 +3,7 @@ import s from "./PlayField.module.scss";
 
 const PlayField = ({ fieldData }) => {
   return (
-    <ul>
+    <ul className={s.field}>
       {fieldData.map((el, idx) => (
         <PlayCell key={idx} id={idx} />
       ))}
