@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { strikeCheck } from "../../logic/strikeCheck";
 import { setTurnCount, setFieldData } from "../../redux/game/gameSlice";
@@ -6,6 +6,7 @@ import PlayCell from "../PlayCell/PlayCell";
 import s from "./PlayField.module.scss";
 
 const PlayField = ({ fieldData }) => {
+  const [clickedID, setClickedID] = useState(null);
   const dispatch = useDispatch();
   const turnCount = useSelector((state) => state.game.turnCount);
 
@@ -16,8 +17,13 @@ const PlayField = ({ fieldData }) => {
     } else {
       dispatch(setFieldData({ mark: "O", idx: id }));
     }
-    strikeCheck({ fieldData, turnCount });
+    setClickedID(id);
   };
+
+  useEffect(() => {
+    strikeCheck({ fieldData, turnCount, clickedID });
+  }, [fieldData, turnCount, clickedID]);
+
   return (
     <ul className={s.field}>
       {fieldData.map((el, idx) => (
