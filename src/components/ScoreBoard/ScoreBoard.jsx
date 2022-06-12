@@ -9,7 +9,7 @@ const ScoreBoard = () => {
     (state) => state.game.player2
   );
   return (
-    <>
+    <div className={s.scoreboard}>
       <h2>Score</h2>
       <p>
         {player1Name}: {player1Score}
@@ -17,7 +17,7 @@ const ScoreBoard = () => {
       <p>
         {player2Name}: {player2Score}
       </p>
-    </>
+    </div>
   );
 };
 

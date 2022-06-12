@@ -1,0 +1,13 @@
+.scoreboard {
+  margin: 20px;
+  & h2 {
+    margin: 0;
+    margin-bottom: 20px;
+  }
+
+  & p {
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
