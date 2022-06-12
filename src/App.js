@@ -8,7 +8,7 @@ import { initFieldData } from "./redux/game/gameSlice";
 
 function App() {
   const dispatch = useDispatch();
-  const [fieldSize, setFieldSize] = useState(4);
+  const [fieldSize, setFieldSize] = useState(3);
   const fieldData = useSelector((state) => state.game.fieldData);
   // const turnCount = useSelector((state) => state.game.turnCount);
 
