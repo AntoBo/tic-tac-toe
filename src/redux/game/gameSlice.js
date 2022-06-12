@@ -20,6 +20,9 @@ const gameSlice = createSlice({
     setTurnCount: (state) => {
       state.turnCount = state.turnCount + 1;
     },
+    resetTurnCount: (state) => {
+      state.turnCount = 0;
+    },
     initFieldData: (state, { payload }) => {
       state.fieldData = payload;
     },
@@ -41,6 +44,7 @@ export const {
   setWinnerMark,
   setPlayersNames,
   setTurnCount,
+  resetTurnCount,
   initFieldData,
   setFieldData,
   incrementScore,

@@ -18,14 +18,16 @@ const PlayCell = ({ id, handleClick }) => {
     setCanClick(false);
 
     turnCount % 2 === 0 ? setStyleMark("X") : setStyleMark("O");
-    setCanClick(true);
 
     //dispatches and logic
     handleClick(id);
   };
 
   useEffect(() => {
-    !winnerMark && setStyleMark("");
+    if (!winnerMark) {
+      setStyleMark("");
+      setCanClick(true);
+    }
   }, [winnerMark]);
 
   return (

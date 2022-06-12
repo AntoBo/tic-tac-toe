@@ -3,4 +3,7 @@
   display: flex;
   flex-wrap: wrap;
   background-color: #545e7f;
+  @media screen and (max-width: 767px) {
+    justify-content: center;
+  }
 }

@@ -7,6 +7,7 @@ import {
   setWinnerMark,
   incrementScore,
   initFieldData,
+  resetTurnCount,
 } from "../../redux/game/gameSlice";
 import Modal from "../Modal/Modal";
 import PlayCell from "../PlayCell/PlayCell";
@@ -35,6 +36,7 @@ const PlayField = ({ fieldData }) => {
 
   const okHandle = () => {
     dispatch(setWinnerMark(""));
+    dispatch(resetTurnCount());
     dispatch(initFieldData([...Array(fieldSize ** 2)].map((el) => "")));
   };
 
@@ -43,7 +45,11 @@ const PlayField = ({ fieldData }) => {
   }, [fieldSize, dispatch]);
 
   useEffect(() => {
-    const checkResp = strikeCheck({ fieldData, turnCount, clickedID });
+    const checkResp = strikeCheck({
+      fieldData,
+      turnCount,
+      clickedID,
+    });
 
     if (checkResp) {
       dispatch(setWinnerMark(checkResp));
@@ -71,12 +77,7 @@ const PlayField = ({ fieldData }) => {
     <div className={s.container}>
       <ul className={s.field}>
         {fieldData.map((el, idx) => (
-          <PlayCell
-            key={idx}
-            id={idx}
-            handleClick={handleClick}
-            // value={fieldData[idx]}
-          />
+          <PlayCell key={idx} id={idx} handleClick={handleClick} />
         ))}
       </ul>
       {hasWinner && <Modal text={modalText} okHandle={okHandle} />}
