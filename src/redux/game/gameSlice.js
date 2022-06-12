@@ -6,7 +6,7 @@ const gameSlice = createSlice({
     turnCount: 0,
     fieldSize: 3,
     fieldData: [],
-    winner: "",
+    winnerMark: "",
     player1: {
       name: "",
       score: 0,
@@ -26,18 +26,22 @@ const gameSlice = createSlice({
     setFieldData: (state, { payload: { mark, idx } }) => {
       state.fieldData[idx] = mark;
     },
-    setWinner: (state, { payload }) => {
-      state.winner = payload;
+    setWinnerMark: (state, { payload }) => {
+      state.winnerMark = payload;
     },
     setPlayersNames: (state, { payload }) => ({ ...state, ...payload }),
+    incrementScore: (state, { payload }) => {
+      state[payload].score = state[payload].score + 1;
+    },
   },
 });
 
 export default gameSlice.reducer;
 export const {
-  setWinner,
+  setWinnerMark,
   setPlayersNames,
   setTurnCount,
   initFieldData,
   setFieldData,
+  incrementScore,
 } = gameSlice.actions;

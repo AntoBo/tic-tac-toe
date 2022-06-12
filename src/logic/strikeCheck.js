@@ -1,11 +1,9 @@
-import { useDispatch } from "react-redux";
-
 export const strikeCheck = ({ fieldData, turnCount, clickedID: id }) => {
   //dont start calculate if turns are not enough
   if (turnCount < 5) {
     return;
   }
-  let winner = "";
+  let winnerMark = "";
   const step = {
     rightSlash: Math.sqrt(fieldData.length) + 1,
     leftSlash: Math.sqrt(fieldData.length) - 1,
@@ -21,21 +19,21 @@ export const strikeCheck = ({ fieldData, turnCount, clickedID: id }) => {
       fieldData[id + sideStep] === playerMark &&
       fieldData[id - sideStep] === playerMark
     ) {
-      winner = playerMark;
+      winnerMark = playerMark;
     }
     if (
       fieldData[id] === playerMark &&
       fieldData[id + sideStep] === playerMark &&
       fieldData[id + sideStep * 2] === playerMark
     ) {
-      winner = playerMark;
+      winnerMark = playerMark;
     }
     if (
       fieldData[id] === playerMark &&
       fieldData[id - sideStep] === playerMark &&
       fieldData[id - sideStep * 2] === playerMark
     ) {
-      winner = playerMark;
+      winnerMark = playerMark;
     }
   };
 
@@ -44,7 +42,16 @@ export const strikeCheck = ({ fieldData, turnCount, clickedID: id }) => {
   stepCheck(step.vert);
   stepCheck(step.horiz);
 
-  if (winner) {
-    return winner;
+  if (winnerMark) {
+    return winnerMark;
+  } else {
+    checkDraw(fieldData);
+  }
+};
+
+const checkDraw = (fieldData) => {
+  const filledFieldData = fieldData.filter((el) => Boolean(el));
+  if (filledFieldData.leigth === fieldData.length) {
+    return "draw";
   }
 };

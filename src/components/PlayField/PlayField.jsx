@@ -4,15 +4,24 @@ import { strikeCheck } from "../../logic/strikeCheck";
 import {
   setTurnCount,
   setFieldData,
-  setWinner,
+  setWinnerMark,
+  incrementScore,
+  initFieldData,
 } from "../../redux/game/gameSlice";
+import Modal from "../Modal/Modal";
 import PlayCell from "../PlayCell/PlayCell";
 import s from "./PlayField.module.scss";
 
 const PlayField = ({ fieldData }) => {
-  const [clickedID, setClickedID] = useState(null);
   const dispatch = useDispatch();
+  const fieldSize = useSelector((state) => state.game.fieldSize);
   const turnCount = useSelector((state) => state.game.turnCount);
+  const player1Name = useSelector((state) => state.game.player1.name);
+  const player2Name = useSelector((state) => state.game.player2.name);
+  const hasWinner = useSelector((state) => Boolean(state.game.winnerMark));
+
+  const [modalText, setModalText] = useState("");
+  const [clickedID, setClickedID] = useState(null);
 
   const handleClick = (id) => {
     dispatch(setTurnCount());
@@ -24,24 +33,54 @@ const PlayField = ({ fieldData }) => {
     setClickedID(id);
   };
 
+  const okHandle = () => {
+    dispatch(setWinnerMark(""));
+    dispatch(initFieldData([...Array(fieldSize ** 2)].map((el) => "")));
+  };
+
   useEffect(() => {
-    const winner = strikeCheck({ fieldData, turnCount, clickedID });
-    if (winner) {
-      dispatch(setWinner(winner));
+    dispatch(initFieldData([...Array(fieldSize ** 2)].map((el) => "")));
+  }, [fieldSize, dispatch]);
+
+  useEffect(() => {
+    const checkResp = strikeCheck({ fieldData, turnCount, clickedID });
+
+    if (checkResp) {
+      dispatch(setWinnerMark(checkResp));
     }
-  }, [fieldData, turnCount, clickedID]);
+
+    switch (checkResp) {
+      case "X":
+        setModalText(player1Name + " wins!");
+        dispatch(incrementScore("player1"));
+        break;
+      case "O":
+        setModalText(player2Name + " wins!");
+        dispatch(incrementScore("player2"));
+        break;
+      case "draw":
+        setModalText("Its draw!");
+        break;
+
+      default:
+        break;
+    }
+  }, [fieldData, turnCount, clickedID, dispatch]);
 
   return (
-    <ul className={s.field}>
-      {fieldData.map((el, idx) => (
-        <PlayCell
-          key={idx}
-          id={idx}
-          handleClick={handleClick}
-          value={fieldData[idx]}
-        />
-      ))}
-    </ul>
+    <>
+      <ul className={s.field}>
+        {fieldData.map((el, idx) => (
+          <PlayCell
+            key={idx}
+            id={idx}
+            handleClick={handleClick}
+            // value={fieldData[idx]}
+          />
+        ))}
+      </ul>
+      {hasWinner && <Modal text={modalText} okHandle={okHandle} />}
+    </>
   );
 };
 

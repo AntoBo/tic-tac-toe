@@ -12,8 +12,6 @@ const InviteForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
-    // console.log(e);
     switch (name) {
       case "player1Name":
         setPlayer1Name(value);

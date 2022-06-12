@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import s from "./Modal.module.scss";
 
-const Modal = ({ close, text }) => {
+const Modal = ({ okHandle, text }) => {
   const handleEsc = ({ code }) => {
     if (code === "Escape") {
-      close();
+      okHandle();
     }
   };
   useEffect(() => {
@@ -18,7 +18,7 @@ const Modal = ({ close, text }) => {
     <div className={s.overlay}>
       <div className={s.modal}>
         <p>{text}</p>
-        <button onClick={close} type="button">
+        <button onClick={okHandle} type="button">
           OK
         </button>
       </div>
