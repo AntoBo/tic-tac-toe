@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/antobo.github.io/tic-tac-toe/static/css/main.1dc57770.css",
-    "main.js": "/antobo.github.io/tic-tac-toe/static/js/main.6a513ac6.js",
-    "static/js/787.393238a3.chunk.js": "/antobo.github.io/tic-tac-toe/static/js/787.393238a3.chunk.js",
-    "index.html": "/antobo.github.io/tic-tac-toe/index.html",
-    "main.1dc57770.css.map": "/antobo.github.io/tic-tac-toe/static/css/main.1dc57770.css.map",
-    "main.6a513ac6.js.map": "/antobo.github.io/tic-tac-toe/static/js/main.6a513ac6.js.map",
-    "787.393238a3.chunk.js.map": "/antobo.github.io/tic-tac-toe/static/js/787.393238a3.chunk.js.map"
+    "main.css": "/tic-tac-toe/static/css/main.1dc57770.css",
+    "main.js": "/tic-tac-toe/static/js/main.79583391.js",
+    "static/js/787.393238a3.chunk.js": "/tic-tac-toe/static/js/787.393238a3.chunk.js",
+    "index.html": "/tic-tac-toe/index.html",
+    "main.1dc57770.css.map": "/tic-tac-toe/static/css/main.1dc57770.css.map",
+    "main.79583391.js.map": "/tic-tac-toe/static/js/main.79583391.js.map",
+    "787.393238a3.chunk.js.map": "/tic-tac-toe/static/js/787.393238a3.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1dc57770.css",
-    "static/js/main.6a513ac6.js"
+    "static/js/main.79583391.js"
   ]
 }
