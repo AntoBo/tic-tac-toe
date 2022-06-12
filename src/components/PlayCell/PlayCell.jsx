@@ -3,29 +3,30 @@ import { useSelector } from "react-redux";
 import s from "./PlayCell.module.scss";
 
 const PlayCell = ({ id, handleClick, value }) => {
-  // const [value, setValue] = useState(" ");
+  const [mark, setMark] = useState("");
   const [canClick, setCanClick] = useState(true);
   const cellSize = useSelector(
     (state) => 100 / Math.sqrt(state.game.fieldData.length)
   );
-  // console.log("cellSize ", cellSize);
+  const turnCount = useSelector((state) => state.game.turnCount);
 
   const onClick = () => {
     if (!canClick) return;
     setCanClick(false);
 
+    turnCount % 2 === 0 ? setMark("X") : setMark("O");
+
+    //fire dispatches and logic
     handleClick(id);
   };
 
   return (
     <li
       style={{ width: `${cellSize}%`, height: `${cellSize}%` }}
-      className={s.cell}
+      className={s["cell" + mark]}
       data-id={id}
       onClick={onClick}
-    >
-      {value}
-    </li>
+    ></li>
   );
 };
 

@@ -1,6 +1,5 @@
 export const strikeCheck = ({ fieldData, turnCount, clickedID: id }) => {
-  console.log("clickedID is", id);
-
+  console.log(fieldData);
   const step = {
     rightSlash: Math.sqrt(fieldData.length) + 1,
     leftSlash: Math.sqrt(fieldData.length) - 1,
@@ -9,7 +8,6 @@ export const strikeCheck = ({ fieldData, turnCount, clickedID: id }) => {
   };
 
   const playerMark = turnCount % 2 === 0 ? "O" : "X";
-  console.log("playerMark is ", playerMark);
 
   const stepCheck = (sideStep) => {
     if (
