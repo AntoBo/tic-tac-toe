@@ -4,6 +4,7 @@ const gameSlice = createSlice({
   name: "game",
   initialState: {
     turnCount: 0,
+    fieldSize: 3,
     fieldData: [],
     winner: "",
     player1: {
@@ -28,9 +29,15 @@ const gameSlice = createSlice({
     setWinner: (state, { payload }) => {
       state.winner = payload;
     },
+    setPlayersNames: (state, { payload }) => ({ ...state, ...payload }),
   },
 });
 
 export default gameSlice.reducer;
-export const { setWinner, setTurnCount, initFieldData, setFieldData } =
-  gameSlice.actions;
+export const {
+  setWinner,
+  setPlayersNames,
+  setTurnCount,
+  initFieldData,
+  setFieldData,
+} = gameSlice.actions;

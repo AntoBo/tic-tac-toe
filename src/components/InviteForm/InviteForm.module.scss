@@ -1,0 +1,35 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.form {
+  border-radius: 10px;
+  padding: 30px 50px;
+  background-color: #fff;
+  & label {
+    display: block;
+    margin-bottom: 20px;
+  }
+  & input {
+    margin-top: 5px;
+    display: block;
+  }
+  & button {
+    padding: 10px 30px;
+    display: block;
+    margin: 0 auto;
+    border: none;
+    color: #fff;
+    background-color: purple;
+    border-radius: 5px;
+  }
+}

@@ -6,8 +6,6 @@ export const strikeCheck = ({ fieldData, turnCount, clickedID: id }) => {
     return;
   }
   let winner = "";
-  //   const dispatch = useDispatch();
-  console.log(fieldData);
   const step = {
     rightSlash: Math.sqrt(fieldData.length) + 1,
     leftSlash: Math.sqrt(fieldData.length) - 1,
