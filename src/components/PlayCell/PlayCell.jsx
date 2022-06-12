@@ -6,7 +6,9 @@ const PlayCell = ({ id, handleClick }) => {
   const [styleMark, setStyleMark] = useState("");
   const [canClick, setCanClick] = useState(true);
   const cellSize = useSelector(
-    (state) => 100 / Math.sqrt(state.game.fieldData.length)
+    (state) =>
+      (100 - Math.sqrt(state.game.fieldData.length) * 2) /
+      Math.sqrt(state.game.fieldData.length)
   );
   const turnCount = useSelector((state) => state.game.turnCount);
   const winnerMark = useSelector((state) => state.game.winnerMark);
@@ -23,7 +25,7 @@ const PlayCell = ({ id, handleClick }) => {
   };
 
   useEffect(() => {
-    setStyleMark("");
+    !winnerMark && setStyleMark("");
   }, [winnerMark]);
 
   return (

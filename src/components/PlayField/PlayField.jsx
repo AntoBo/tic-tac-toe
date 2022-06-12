@@ -68,7 +68,7 @@ const PlayField = ({ fieldData }) => {
   }, [fieldData, turnCount, clickedID, dispatch]);
 
   return (
-    <>
+    <div className={s.container}>
       <ul className={s.field}>
         {fieldData.map((el, idx) => (
           <PlayCell
@@ -80,7 +80,7 @@ const PlayField = ({ fieldData }) => {
         ))}
       </ul>
       {hasWinner && <Modal text={modalText} okHandle={okHandle} />}
-    </>
+    </div>
   );
 };
 

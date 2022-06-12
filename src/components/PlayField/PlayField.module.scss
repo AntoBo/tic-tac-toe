@@ -1,12 +1,17 @@
+// .container {
+//   margin: -5px;
+// }
+
 .field {
   padding: 0;
-  // padding: -5px;
-  // margin: -5px;
+  margin: 0;
   display: flex;
   flex-wrap: wrap;
   width: 300px;
   height: 300px;
-  // outline: 1px olive solid;
   background: #a855c1;
-  // outline: 5px red olive;
+
+  -webkit-box-shadow: inset 0px 0px 0px 3px #545e7f;
+  -moz-box-shadow: inset 0px 0px 0px 3px #545e7f;
+  box-shadow: inset 0px 0px 0px 3px #545e7f;
 }
