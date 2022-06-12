@@ -7,13 +7,7 @@
   background-color: #44425e;
 }
 
-.cellX {
-  list-style: none;
-  display: flex;
-  margin: 3px;
-  align-items: center;
-  justify-content: center;
-  background-color: #44425e;
+.X {
   &:before {
     content: "";
     background-color: #c4c4c4;
@@ -36,35 +30,27 @@
   }
 }
 
-.cellXwin {
+.O {
   position: relative;
-  list-style: none;
-  display: flex;
-  margin: 3px;
-  align-items: center;
-  justify-content: center;
-  background-color: #44425e;
-  // outline: 5px red solid;
   &:before {
     content: "";
     background-color: #c4c4c4;
     width: 85%;
     height: 85%;
-    clip-path: polygon(
-      10% 0,
-      0 10%,
-      40% 50%,
-      0 90%,
-      10% 100%,
-      50% 60%,
-      90% 100%,
-      100% 90%,
-      60% 50%,
-      100% 10%,
-      90% 0,
-      50% 40%
-    );
+    border-radius: 50%;
   }
+  &:after {
+    position: absolute;
+    content: "";
+    background-color: #44425e;
+    width: 65%;
+    height: 65%;
+    border-radius: 50%;
+  }
+}
+
+.winRot0 {
+  position: relative;
   &:after {
     position: absolute;
     // transform: rotate(45deg);
@@ -74,33 +60,5 @@
     border-radius: 1000px;
     background-color: red;
     z-index: 1;
-  }
-}
-
-.cellO {
-  position: relative;
-  list-style: none;
-  display: flex;
-  margin: 3px;
-  align-items: center;
-  justify-content: center;
-  background-color: #44425e;
-  // outline: 5px red solid;
-  &:before {
-    content: "";
-    // clip-path: circle(24.3% at 50% 50%);
-    background-color: #c4c4c4;
-    width: 85%;
-    height: 85%;
-    border-radius: 50%;
-  }
-  &:after {
-    position: absolute;
-    content: "";
-    // clip-path: circle(24.3% at 50% 50%);
-    background-color: #44425e;
-    width: 65%;
-    height: 65%;
-    border-radius: 50%;
   }
 }

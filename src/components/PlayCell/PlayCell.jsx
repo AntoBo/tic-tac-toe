@@ -33,7 +33,7 @@ const PlayCell = ({ id, handleClick }) => {
   return (
     <li
       style={{ width: `${cellSize}%`, height: `${cellSize}%` }}
-      className={s[`cell${styleMark}`]}
+      className={`${s.cell} ${styleMark && s[styleMark]}`}
       data-id={id}
       onClick={onClick}
     ></li>
