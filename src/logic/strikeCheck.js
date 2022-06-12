@@ -1,4 +1,12 @@
+import { useDispatch } from "react-redux";
+
 export const strikeCheck = ({ fieldData, turnCount, clickedID: id }) => {
+  //dont start calculate if turns are not enough
+  if (turnCount < 5) {
+    return;
+  }
+  let winner = "";
+  //   const dispatch = useDispatch();
   console.log(fieldData);
   const step = {
     rightSlash: Math.sqrt(fieldData.length) + 1,
@@ -15,21 +23,21 @@ export const strikeCheck = ({ fieldData, turnCount, clickedID: id }) => {
       fieldData[id + sideStep] === playerMark &&
       fieldData[id - sideStep] === playerMark
     ) {
-      console.log("WIN OF ", playerMark);
+      winner = playerMark;
     }
     if (
       fieldData[id] === playerMark &&
       fieldData[id + sideStep] === playerMark &&
       fieldData[id + sideStep * 2] === playerMark
     ) {
-      console.log("WIN OF ", playerMark);
+      winner = playerMark;
     }
     if (
       fieldData[id] === playerMark &&
       fieldData[id - sideStep] === playerMark &&
       fieldData[id - sideStep * 2] === playerMark
     ) {
-      console.log("WIN OF ", playerMark);
+      winner = playerMark;
     }
   };
 
@@ -37,4 +45,8 @@ export const strikeCheck = ({ fieldData, turnCount, clickedID: id }) => {
   stepCheck(step.leftSlash);
   stepCheck(step.vert);
   stepCheck(step.horiz);
+
+  if (winner) {
+    return winner;
+  }
 };

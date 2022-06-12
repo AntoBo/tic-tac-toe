@@ -9,10 +9,17 @@ function App() {
   const dispatch = useDispatch();
   const [fieldSize, setFieldSize] = useState(3);
   const fieldData = useSelector((state) => state.game.fieldData);
+  const winner = useSelector((state) => state.game.winner);
 
   useEffect(() => {
     dispatch(initFieldData([...Array(fieldSize ** 2)].map((el) => "")));
   }, []);
+
+  useEffect(() => {
+    if (winner) {
+      console.log("we got a winner! ", winner);
+    }
+  }, [winner]);
 
   return (
     <Container>

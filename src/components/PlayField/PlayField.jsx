@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { strikeCheck } from "../../logic/strikeCheck";
-import { setTurnCount, setFieldData } from "../../redux/game/gameSlice";
+import {
+  setTurnCount,
+  setFieldData,
+  setWinner,
+} from "../../redux/game/gameSlice";
 import PlayCell from "../PlayCell/PlayCell";
 import s from "./PlayField.module.scss";
 
@@ -21,7 +25,10 @@ const PlayField = ({ fieldData }) => {
   };
 
   useEffect(() => {
-    strikeCheck({ fieldData, turnCount, clickedID });
+    const winner = strikeCheck({ fieldData, turnCount, clickedID });
+    if (winner) {
+      dispatch(setWinner(winner));
+    }
   }, [fieldData, turnCount, clickedID]);
 
   return (

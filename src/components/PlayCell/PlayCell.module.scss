@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(205, 205, 255);
+  background-color: purple;
   outline: 1px red solid;
 }
 
@@ -12,13 +12,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(205, 205, 255);
+  background-color: purple;
   outline: 1px red solid;
   &:before {
     content: "";
-    background-color: red;
-    width: 90%;
-    height: 90%;
+    background-color: white;
+    width: 85%;
+    height: 85%;
     clip-path: polygon(
       10% 0,
       0 10%,
@@ -36,29 +36,70 @@
   }
 }
 
+.cellXwin {
+  position: relative;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: purple;
+  outline: 1px red solid;
+  &:before {
+    content: "";
+    background-color: white;
+    width: 85%;
+    height: 85%;
+    clip-path: polygon(
+      10% 0,
+      0 10%,
+      40% 50%,
+      0 90%,
+      10% 100%,
+      50% 60%,
+      90% 100%,
+      100% 90%,
+      60% 50%,
+      100% 10%,
+      90% 0,
+      50% 40%
+    );
+  }
+  &:after {
+    position: absolute;
+    // transform: rotate(45deg);
+    content: "";
+    // height: 320%;
+    height: 120%;
+    width: 20%;
+    border-radius: 1000px;
+    background-color: red;
+    z-index: 1;
+  }
+}
+
 .cellO {
   position: relative;
   list-style: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(205, 205, 255);
+  background-color: purple;
   outline: 1px red solid;
   &:before {
     content: "";
     // clip-path: circle(24.3% at 50% 50%);
-    background-color: red;
-    width: 90%;
-    height: 90%;
+    background-color: white;
+    width: 85%;
+    height: 85%;
     border-radius: 50%;
   }
   &:after {
     position: absolute;
     content: "";
     // clip-path: circle(24.3% at 50% 50%);
-    background-color: white;
-    width: 70%;
-    height: 70%;
+    background-color: purple;
+    width: 65%;
+    height: 65%;
     border-radius: 50%;
   }
 }
