@@ -55,12 +55,6 @@ const PlayField = ({ fieldData }) => {
       clickedID,
     });
 
-    // if (checkResp) {
-    //   dispatch(setWinnerMark(checkResp));
-    //   dispatch(setAngleRot(angleRot));
-    //   dispatch(setWinID(winID));
-    // }
-
     switch (checkResp) {
       case "X":
         setModalText(player1Name + " wins!");

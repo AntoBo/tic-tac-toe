@@ -3,6 +3,7 @@ export const strikeCheck = ({ fieldData, turnCount, clickedID: id }) => {
   if (turnCount < 5) {
     return ["", 0, 0];
   }
+
   let winnerMark = "";
   let angleRot = "";
   let winID = 0;
