@@ -31,20 +31,12 @@
 }
 
 .O {
-  position: relative;
   &:before {
-    content: "";
-    background-color: #c4c4c4;
-    width: 85%;
-    height: 85%;
-    border-radius: 50%;
-  }
-  &:after {
-    position: absolute;
     content: "";
     background-color: #44425e;
     width: 65%;
     height: 65%;
+    border: 0.55em solid #c4c4c4;
     border-radius: 50%;
   }
 }
@@ -53,7 +45,6 @@
   position: relative;
   &:after {
     position: absolute;
-    // transform: rotate(45deg);
     content: "";
     height: 320%;
     width: 20%;
