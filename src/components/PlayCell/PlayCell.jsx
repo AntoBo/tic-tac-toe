@@ -4,6 +4,7 @@ import s from "./PlayCell.module.scss";
 
 const PlayCell = ({ id, handleClick }) => {
   const [styleMark, setStyleMark] = useState("");
+  const [styleWinMark, setStyleWinMark] = useState("");
   const [canClick, setCanClick] = useState(true);
   const cellSize = useSelector(
     (state) =>
@@ -12,6 +13,8 @@ const PlayCell = ({ id, handleClick }) => {
   );
   const turnCount = useSelector((state) => state.game.turnCount);
   const winnerMark = useSelector((state) => state.game.winnerMark);
+  const winID = useSelector((state) => state.game.winID);
+  const angleRot = useSelector((state) => state.game.angleRot);
 
   const onClick = () => {
     if (!canClick) return;
@@ -26,14 +29,21 @@ const PlayCell = ({ id, handleClick }) => {
   useEffect(() => {
     if (!winnerMark) {
       setStyleMark("");
+      setStyleWinMark("");
       setCanClick(true);
+    } else {
+      if (winID === id) {
+        setStyleWinMark("win");
+      }
     }
   }, [winnerMark]);
 
   return (
     <li
       style={{ width: `${cellSize}%`, height: `${cellSize}%` }}
-      className={`${s.cell} ${styleMark && s[styleMark]}`}
+      className={`${s.cell} ${styleMark && s[styleMark]} ${
+        styleWinMark && s[styleWinMark]
+      } ${angleRot && s[angleRot]}`}
       data-id={id}
       onClick={onClick}
     ></li>

@@ -7,6 +7,8 @@ const gameSlice = createSlice({
     fieldSize: 3,
     fieldData: [],
     winnerMark: "",
+    winID: 0,
+    angleRot: 0,
     player1: {
       name: "",
       score: 0,
@@ -19,6 +21,12 @@ const gameSlice = createSlice({
   reducers: {
     setTurnCount: (state) => {
       state.turnCount = state.turnCount + 1;
+    },
+    setWinID: (state, { payload }) => {
+      state.winID = payload;
+    },
+    setAngleRot: (state, { payload }) => {
+      state.angleRot = payload;
     },
     resetTurnCount: (state) => {
       state.turnCount = 0;
@@ -48,4 +56,6 @@ export const {
   initFieldData,
   setFieldData,
   incrementScore,
+  setWinID,
+  setAngleRot,
 } = gameSlice.actions;

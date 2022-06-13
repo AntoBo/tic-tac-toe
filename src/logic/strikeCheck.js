@@ -1,9 +1,11 @@
 export const strikeCheck = ({ fieldData, turnCount, clickedID: id }) => {
   //dont start calculate if turns are not enough
-  //   if (turnCount < 5) {
-  //     return;
-  //   }
+  if (turnCount < 5) {
+    return ["", 0, 0];
+  }
   let winnerMark = "";
+  let angleRot = "";
+  let winID = 0;
   const fieldSize = Math.sqrt(fieldData.length);
   const playerMark = turnCount % 2 === 0 ? "O" : "X";
   const step = {
@@ -13,7 +15,7 @@ export const strikeCheck = ({ fieldData, turnCount, clickedID: id }) => {
     horiz: 1,
   };
 
-  const stepCheck = (sideStep, matchCondition) => {
+  const stepCheck = (sideStep, matchCondition, angle) => {
     if (
       fieldData[id] === playerMark &&
       fieldData[id + sideStep] === playerMark &&
@@ -24,6 +26,8 @@ export const strikeCheck = ({ fieldData, turnCount, clickedID: id }) => {
         matchCondition
       ) {
         winnerMark = playerMark;
+        angleRot = angle;
+        winID = id;
       }
     }
     if (
@@ -39,6 +43,8 @@ export const strikeCheck = ({ fieldData, turnCount, clickedID: id }) => {
         ) === matchCondition
       ) {
         winnerMark = playerMark;
+        angleRot = angle;
+        winID = id + sideStep;
       }
     }
     if (
@@ -54,6 +60,8 @@ export const strikeCheck = ({ fieldData, turnCount, clickedID: id }) => {
         ) === matchCondition
       ) {
         winnerMark = playerMark;
+        angleRot = angle;
+        winID = id - sideStep;
       }
     }
   };
@@ -72,14 +80,14 @@ export const strikeCheck = ({ fieldData, turnCount, clickedID: id }) => {
   };
 
   //check if all are in DIFF row
-  stepCheck(step.rightSlash, "none");
-  stepCheck(step.leftSlash, "none");
-  stepCheck(step.vert, "none");
+  stepCheck(step.rightSlash, "none", "rot135");
+  stepCheck(step.leftSlash, "none", "rot45");
+  stepCheck(step.vert, "none", "rot0");
   //check if all are in SAME row
-  stepCheck(step.horiz, "all");
+  stepCheck(step.horiz, "all", "rot90");
 
   if (winnerMark) {
-    return winnerMark;
+    return [winnerMark, angleRot, winID];
   } else {
     return checkDraw(fieldData);
   }
@@ -88,6 +96,8 @@ export const strikeCheck = ({ fieldData, turnCount, clickedID: id }) => {
 const checkDraw = (fieldData) => {
   const filledFieldData = fieldData.filter((el) => Boolean(el));
   if (filledFieldData.length === fieldData.length) {
-    return "draw";
+    return ["draw", "", 0];
+  } else {
+    return ["", "", 0];
   }
 };

@@ -68,3 +68,18 @@
     transform: rotate(45deg);
   }
 }
+.rot135 {
+  &:after {
+    transform: rotate(135deg);
+  }
+}
+.rot90 {
+  &:after {
+    transform: rotate(90deg);
+  }
+}
+.rot0 {
+  &:after {
+    transform: rotate(0deg);
+  }
+}

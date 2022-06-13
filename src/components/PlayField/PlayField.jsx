@@ -8,6 +8,8 @@ import {
   incrementScore,
   initFieldData,
   resetTurnCount,
+  setAngleRot,
+  setWinID,
 } from "../../redux/game/gameSlice";
 import Modal from "../Modal/Modal";
 import PlayCell from "../PlayCell/PlayCell";
@@ -45,7 +47,7 @@ const PlayField = ({ fieldData }) => {
   }, [fieldSize, dispatch]);
 
   useEffect(() => {
-    const checkResp = strikeCheck({
+    const [checkResp, angleRot, winID] = strikeCheck({
       fieldData,
       turnCount,
       clickedID,
@@ -53,6 +55,8 @@ const PlayField = ({ fieldData }) => {
 
     if (checkResp) {
       dispatch(setWinnerMark(checkResp));
+      dispatch(setAngleRot(angleRot));
+      dispatch(setWinID(winID));
     }
 
     switch (checkResp) {
