@@ -13,75 +13,81 @@ export const strikeCheck = ({ fieldData, turnCount, clickedID: id }) => {
     horiz: 1,
   };
 
-  const stepCheck = (sideStep, rotateAngle) => {
+  const stepCheck = (sideStep, matchCondition) => {
     if (
       fieldData[id] === playerMark &&
       fieldData[id + sideStep] === playerMark &&
       fieldData[id - sideStep] === playerMark
     ) {
-      winnerMark = playerMark;
+      if (
+        rowCheck(getRow(id), getRow(id + sideStep), getRow(id - sideStep)) ===
+        matchCondition
+      ) {
+        winnerMark = playerMark;
+      }
     }
     if (
       fieldData[id] === playerMark &&
       fieldData[id + sideStep] === playerMark &&
       fieldData[id + sideStep * 2] === playerMark
     ) {
-      winnerMark = playerMark;
+      if (
+        rowCheck(
+          getRow(id),
+          getRow(id + sideStep),
+          getRow(id + sideStep * 2)
+        ) === matchCondition
+      ) {
+        winnerMark = playerMark;
+      }
     }
     if (
       fieldData[id] === playerMark &&
       fieldData[id - sideStep] === playerMark &&
       fieldData[id - sideStep * 2] === playerMark
     ) {
-      winnerMark = playerMark;
+      if (
+        rowCheck(
+          getRow(id),
+          getRow(id - sideStep),
+          getRow(id - sideStep * 2)
+        ) === matchCondition
+      ) {
+        winnerMark = playerMark;
+      }
     }
   };
   const getRow = (id) => {
     return (id - (id % fieldSize)) / fieldSize;
   };
+  const rowCheck = (a, b, c) => {
+    if (a === b && b === c) {
+      return "all";
+    }
+    if (a !== b && b !== c && a !== c) {
+      return "none";
+    }
 
-  const rowsMatchCheck = (sideStep) => {
-    let match = "";
-    if (
-      getRow(id) === getRow(id + sideStep) &&
-      getRow(id + sideStep) === getRow(id - sideStep)
-    ) {
-      match = true;
-      //   console.log("getRow(id) ", getRow(id));
-      console.log("match 1", match);
-    }
-    if (
-      getRow(id) === getRow(id + sideStep) &&
-      getRow(id + sideStep) === getRow(id + sideStep * 2)
-    ) {
-      match = true;
-      console.log("match 2", match);
-    }
-    if (
-      getRow(id) === getRow(id - sideStep) &&
-      getRow(id - sideStep) === getRow(id - sideStep * 2)
-    ) {
-      match = true;
-      console.log("match 3", match);
-    }
-    return match;
+    return "misc";
   };
 
-  stepCheck(step.rightSlash, -45);
-  stepCheck(step.leftSlash, 45); //check if all are in DIFF row
-  stepCheck(step.vert, 0);
-  rowsMatchCheck(step.horiz, 90) && stepCheck(step.horiz); //check if all are in SAME row
+  //check if all are in DIFF row
+  stepCheck(step.rightSlash, "none");
+  stepCheck(step.leftSlash, "none");
+  stepCheck(step.vert, "none");
+  //check if all are in SAME row
+  stepCheck(step.horiz, "all");
 
   if (winnerMark) {
     return winnerMark;
   } else {
-    checkDraw(fieldData);
+    return checkDraw(fieldData);
   }
 };
 
 const checkDraw = (fieldData) => {
   const filledFieldData = fieldData.filter((el) => Boolean(el));
-  if (filledFieldData.leigth === fieldData.length) {
+  if (filledFieldData.length === fieldData.length) {
     return "draw";
   }
 };

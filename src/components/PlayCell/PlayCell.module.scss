@@ -49,7 +49,7 @@
   }
 }
 
-.winRot0 {
+.win {
   position: relative;
   &:after {
     position: absolute;
@@ -60,5 +60,11 @@
     border-radius: 1000px;
     background-color: red;
     z-index: 1;
+  }
+}
+
+.rot45 {
+  &:after {
+    transform: rotate(45deg);
   }
 }
