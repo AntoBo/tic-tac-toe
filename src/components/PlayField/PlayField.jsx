@@ -39,6 +39,8 @@ const PlayField = ({ fieldData }) => {
   const okHandle = () => {
     dispatch(setWinnerMark(""));
     dispatch(resetTurnCount());
+    dispatch(setAngleRot(""));
+    dispatch(setWinID(""));
     dispatch(initFieldData([...Array(fieldSize ** 2)].map((el) => "")));
   };
 
@@ -53,22 +55,29 @@ const PlayField = ({ fieldData }) => {
       clickedID,
     });
 
-    if (checkResp) {
-      dispatch(setWinnerMark(checkResp));
-      dispatch(setAngleRot(angleRot));
-      dispatch(setWinID(winID));
-    }
+    // if (checkResp) {
+    //   dispatch(setWinnerMark(checkResp));
+    //   dispatch(setAngleRot(angleRot));
+    //   dispatch(setWinID(winID));
+    // }
 
     switch (checkResp) {
       case "X":
         setModalText(player1Name + " wins!");
+        dispatch(setWinnerMark(checkResp));
         dispatch(incrementScore("player1"));
+        dispatch(setAngleRot(angleRot));
+        dispatch(setWinID(winID));
         break;
       case "O":
         setModalText(player2Name + " wins!");
+        dispatch(setWinnerMark(checkResp));
         dispatch(incrementScore("player2"));
+        dispatch(setAngleRot(angleRot));
+        dispatch(setWinID(winID));
         break;
       case "draw":
+        dispatch(setWinnerMark(checkResp));
         setModalText("Its draw!");
         break;
 

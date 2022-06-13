@@ -7,8 +7,8 @@ const gameSlice = createSlice({
     fieldSize: 3,
     fieldData: [],
     winnerMark: "",
-    winID: 0,
-    angleRot: 0,
+    winID: null,
+    angleRot: "",
     player1: {
       name: "",
       score: 0,
